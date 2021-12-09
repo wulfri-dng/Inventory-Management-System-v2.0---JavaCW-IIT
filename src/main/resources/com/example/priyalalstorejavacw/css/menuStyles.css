@@ -1,0 +1,11 @@
+.menuBtn {
+    -fx-background-color:  trnsparent;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: white;
+}
+
+.menuBtn:hover {
+    -fx-background-color: #155834;
+    -fx-cursor: hand;
+}
+

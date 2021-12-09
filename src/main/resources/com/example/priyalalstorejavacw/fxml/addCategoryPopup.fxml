@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="190.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.CategoryTabController">
+   <children>
+      <TextField fx:id="categoryName" layoutX="176.0" layoutY="63.0" />
+      <TextField fx:id="categoryID" layoutX="176.0" layoutY="104.0" />
+      <Label layoutX="61.0" layoutY="67.0" text="Category name:" />
+      <Label layoutX="61.0" layoutY="108.0" text="Category ID:" />
+      <Button fx:id="addCategoryBtn" layoutX="237.0" layoutY="145.0" mnemonicParsing="false" onAction="#addCategoryBtn" text="Add category" />
+      <Label fx:id="categoryTopLabel" layoutX="209.0" layoutY="35.0" />
+      <Button layoutX="51.0" layoutY="133.0" mnemonicParsing="false" onAction="#printCategories" text="Print all categories" />
+   </children>
+</AnchorPane>

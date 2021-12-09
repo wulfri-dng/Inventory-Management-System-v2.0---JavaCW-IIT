@@ -1,0 +1,15 @@
+#anchorPane  {
+    -fx-background-color: white;
+}
+
+.textBox {
+    -fx-background-color: white;
+
+}       
+
+#addProductBtn {
+    -fx-background-color: #1C7947;
+    -fx-background-radius: 12;
+    -fx-font-weight: 700;
+    -fx-text-fill: white;
+}

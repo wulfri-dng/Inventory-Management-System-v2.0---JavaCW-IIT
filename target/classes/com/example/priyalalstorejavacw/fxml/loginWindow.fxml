@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" stylesheets="@../css/loginStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.LoginController">
+   <children>
+      <TextField fx:id="username" layoutX="515.0" layoutY="263.0" prefHeight="27.0" prefWidth="278.0" promptText="Enter username" styleClass="textBox" />
+      <TextField fx:id="password" layoutX="516.0" layoutY="326.0" prefHeight="27.0" prefWidth="278.0" promptText="Enter password" styleClass="textBox" />
+      <Label layoutX="516.0" layoutY="242.0" text="Username" />
+      <Label layoutX="517.0" layoutY="307.0" text="Password" />
+      <Button id="loginBtn" fx:id="loginBtn" layoutX="604.0" layoutY="401.0" mnemonicParsing="false" onAction="#logInPressed" prefHeight="27.0" prefWidth="103.0" style="-fx-background-radius: 12; -fx-font-weight: 700; -fx-text-fill: white;" text="Log In">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="topLabel" layoutX="237.0" layoutY="146.0" prefHeight="17.0" prefWidth="0.0" />
+      <Label layoutX="513.0" layoutY="116.0" text="Welcome back!">
+         <font>
+            <Font name="Verdana" size="31.0" />
+         </font>
+      </Label>
+      <Label layoutX="513.0" layoutY="163.0" prefHeight="51.0" prefWidth="288.0" text="Please enter you username and password to log in to to system" wrapText="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="705.0" layoutY="360.0" text="Forgot password" textFill="#0a5ada">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Label>
+      <Pane prefHeight="550.0" prefWidth="450.0" style="-fx-background-color: #1C7947;">
+         <children>
+            <ImageView fitHeight="205.0" fitWidth="334.0" layoutX="70.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+<!--                  <Image url="@imgs/Login%20Image%202.png" />-->
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
