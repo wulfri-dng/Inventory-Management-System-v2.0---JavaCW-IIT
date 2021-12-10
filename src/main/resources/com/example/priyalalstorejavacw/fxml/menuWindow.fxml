@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="menuBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: transparent;" stylesheets="@../css/menuStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.MenuController">
+<BorderPane fx:id="menuBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1090.0" style="-fx-background-color: transparent;" stylesheets="@../css/menuStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.MenuController">
    <left>
       <VBox prefHeight="550.0" prefWidth="175.0" style="-fx-background-color: #1C7947; -fx-background-radius: 0 0 0 10;" BorderPane.alignment="CENTER">
          <children>

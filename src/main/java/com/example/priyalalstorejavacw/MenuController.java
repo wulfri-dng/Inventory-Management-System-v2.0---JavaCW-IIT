@@ -59,9 +59,8 @@ public class MenuController {
         loadPage("sample");
     }
 
-
     public void category(MouseEvent mouseEvent) {
-        loadPage("addCategoryPopup");
+        loadPage("categoryTab");
     }
 
     public void closeMenu(ActionEvent event) {
