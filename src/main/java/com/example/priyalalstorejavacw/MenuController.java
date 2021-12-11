@@ -52,7 +52,7 @@ public class MenuController {
     }
 
     public void products(MouseEvent mouseEvent) {
-        loadPage("addProductPopup");
+        loadPage("productTab");
     }
 
     public void stock(MouseEvent mouseEvent) {

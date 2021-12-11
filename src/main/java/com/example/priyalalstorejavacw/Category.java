@@ -1,7 +1,5 @@
 package com.example.priyalalstorejavacw;
 
-import javafx.scene.control.Button;
-
 public class Category {
     int categoryId;
     String name;
@@ -17,20 +15,20 @@ public class Category {
         return categoryId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNote() {
+        return note;
     }
 
     public void setNote(String note) {

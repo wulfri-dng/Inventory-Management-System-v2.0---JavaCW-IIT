@@ -16,6 +16,7 @@ public class CategoryTabController {
     public TableColumn<Category, Integer> categoryTableId;
     public TableColumn<Category, String> categoryTableName;
     public TableColumn<Category, String> categoryTableDescription;
+
     public TextField addCategoryName;
     public TextArea addCategoryNote;
     public TextField editCategorySearchTxtBox;
@@ -51,6 +52,19 @@ public class CategoryTabController {
         categoryTableName.setCellValueFactory(new PropertyValueFactory<Category, String>("name"));
         categoryTableDescription.setCellValueFactory(new PropertyValueFactory<Category, String>("note"));
         categoryTable.setItems(list);
+    }
+
+    public int generateCategoryID() {
+        ArrayList<Integer> categoryIdList = new ArrayList<Integer>();
+        for (Document doc: categoryIterDoc) {
+            int currentCategoryId = (Integer) doc.get("id");
+            categoryIdList.add(currentCategoryId);
+        }
+        if (categoryIdList.size() == 0){
+            return 1000;
+        } else {
+            return categoryIdList.get(categoryIdList.size()-1) + 1;
+        }
     }
 
     public void addCategory(ActionEvent actionEvent) {
@@ -119,23 +133,12 @@ public class CategoryTabController {
 //        }
     }
 
-    public int generateCategoryID() {
-        ArrayList<Integer> categoryIdList = new ArrayList<Integer>();
-        for (Document doc: categoryIterDoc) {
-        int currentCategoryId = (Integer) doc.get("id");
-            categoryIdList.add(currentCategoryId);
-        }
-        if (categoryIdList.size() == 0){
-            return 1000;
-        } else {
-            return categoryIdList.get(categoryIdList.size()-1) + 1;
-        }
-    }
+
 
     public void updateCategory(ActionEvent actionEvent) {
         if (!editCategoryNewCategoryName.getText().equals("")) {
             BasicDBObject query = new BasicDBObject();
-            query.put("id", searchedCategoryID);
+            query.put("id", 500);
 
             // UPDATE CATEGORY NAME
             BasicDBObject newUpdateName = new BasicDBObject();

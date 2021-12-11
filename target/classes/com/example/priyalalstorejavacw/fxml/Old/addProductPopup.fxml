@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="725.0" stylesheets="@../css/productsTabStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.ProductTabController">
+<AnchorPane id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="725.0" stylesheets="@../../css/productsTabStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.ProductTabController">
    <children>
       <Label alignment="CENTER" layoutX="136.0" layoutY="29.0" prefHeight="51.0" prefWidth="438.0" text="Add Product">
          <font>
