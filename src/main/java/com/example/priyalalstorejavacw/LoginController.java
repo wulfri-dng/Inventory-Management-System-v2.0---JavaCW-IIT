@@ -19,7 +19,8 @@ import java.io.IOException;
 public class LoginController {
     public static MongoClient mongoClient = new MongoClient("localhost", 27017);
     public static MongoDatabase database = mongoClient.getDatabase("Priyalal_Store");
-    private static final MongoCollection<Document> collection = database.getCollection(("password"));
+    private static final MongoCollection<Document> passwordCollection = database.getCollection(("password"));
+    public static MongoCollection<Document> categoryCollection = database.getCollection(("categories"));
 
     @FXML
     Label topLabel;
@@ -32,7 +33,7 @@ public class LoginController {
     public void logInPressed(ActionEvent event) throws IOException {
         String defaultUsername = null;
         String defaultPassword = null;
-        FindIterable<Document> iterDoc = collection.find();
+        FindIterable<Document> iterDoc = passwordCollection.find();
         for (Document doc: iterDoc) {
             defaultUsername = (String) doc.get("username");
             defaultPassword = (String) doc.get("password");

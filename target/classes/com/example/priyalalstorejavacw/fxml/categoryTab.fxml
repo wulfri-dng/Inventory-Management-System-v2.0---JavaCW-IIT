@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
-
 <AnchorPane prefHeight="672.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.CategoryTabController">
    <children>
       <TableView fx:id="categoryTable" layoutX="22.0" layoutY="48.0" prefHeight="244.0" prefWidth="874.0">
@@ -26,31 +25,38 @@
       <Pane layoutX="21.0" layoutY="348.0" prefHeight="301.0" prefWidth="467.0" style="-fx-background-color: #ececed;">
          <children>
             <Label layoutX="19.0" layoutY="18.0" text="Category Name or ID : " />
-            <TextField layoutX="144.0" layoutY="14.0" prefHeight="25.0" prefWidth="233.0" />
-            <Button layoutX="385.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Search" />
+            <TextField fx:id="editCategorySearchTxtBox" layoutX="144.0" layoutY="14.0" prefHeight="25.0" prefWidth="233.0" />
+            <Button layoutX="385.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchCategory" prefHeight="25.0" prefWidth="61.0" text="Search" />
             <Pane layoutX="20.0" layoutY="52.0" prefHeight="93.0" prefWidth="426.0" style="-fx-background-color: gray;">
                <children>
-                  <Button disable="true" layoutX="363.0" layoutY="61.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Delete" />
+                  <Button fx:id="categoryDeleteBtn" layoutX="359.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="61.0" text="Delete" />
+                  <Label layoutX="14.0" layoutY="31.0" text="Name :" />
+                  <Label layoutX="344.0" layoutY="12.0" text="ID : " />
+                  <Label layoutX="14.0" layoutY="56.0" text="Extra Note : " />
+                  <Label fx:id="categoryNotificationLabel" layoutX="15.0" layoutY="9.0" prefHeight="17.0" prefWidth="275.0" />
+                  <Label fx:id="showCategoryName" layoutX="86.0" layoutY="31.0" prefHeight="17.0" prefWidth="261.0" />
+                  <Label fx:id="showCategoryNote" layoutX="86.0" layoutY="56.0" prefHeight="38.0" prefWidth="261.0" />
+                  <Label fx:id="showCategoryId" layoutX="366.0" layoutY="12.0" prefHeight="17.0" prefWidth="53.0" />
                </children>
             </Pane>
             <Label layoutX="23.0" layoutY="163.0" text="Enter new Category Name :" />
-            <TextField layoutX="179.0" layoutY="160.0" prefHeight="25.0" prefWidth="267.0" />
+            <TextField fx:id="editCategoryNewCategoryName" layoutX="179.0" layoutY="160.0" prefHeight="25.0" prefWidth="267.0" />
             <Label layoutX="25.0" layoutY="199.0" text="Add Category Extra Note :" />
-            <Button layoutX="384.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Update" />
-            <TextArea layoutX="179.0" layoutY="197.0" prefHeight="52.0" prefWidth="267.0" wrapText="true" />
+            <Button layoutX="384.0" layoutY="259.0" mnemonicParsing="false" onAction="#updateCategory" prefHeight="25.0" prefWidth="61.0" text="Update" />
+            <TextArea fx:id="editCategoryNewCategoryNote" layoutX="179.0" layoutY="197.0" prefHeight="52.0" prefWidth="267.0" wrapText="true" />
          </children>
       </Pane>
       <Line endX="89.0" layoutX="123.0" layoutY="337.0" startX="-100.0" />
       <Pane layoutX="512.0" layoutY="349.0" prefHeight="166.0" prefWidth="387.0" style="-fx-background-color: #ececed;">
          <children>
             <Label layoutX="16.0" layoutY="20.0" text="Category Name : " />
-            <TextField layoutX="119.0" layoutY="17.0" prefHeight="25.0" prefWidth="250.0" />
+            <TextField fx:id="addCategoryName" layoutX="119.0" layoutY="17.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter category name" />
             <Label layoutX="18.0" layoutY="62.0" text="Extra Note :" />
-            <Button layoutX="265.0" layoutY="121.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Add Category" />
-            <TextArea layoutX="120.0" layoutY="55.0" prefHeight="52.0" prefWidth="250.0" wrapText="true" />
+            <Button layoutX="265.0" layoutY="121.0" mnemonicParsing="false" onAction="#addCategory" prefHeight="25.0" prefWidth="104.0" text="Add Category" />
+            <TextArea fx:id="addCategoryNote" layoutX="120.0" layoutY="55.0" prefHeight="52.0" prefWidth="250.0" wrapText="true" />
          </children>
       </Pane>
-      <Label layoutX="513.0" layoutY="317.0" text="Edit/ Delete Category" />
+      <Label layoutX="513.0" layoutY="317.0" text="Add Category" />
       <Line endX="89.0" layoutX="614.0" layoutY="338.0" startX="-100.0" />
    </children>
 </AnchorPane>
