@@ -29,7 +29,7 @@
             <Button layoutX="385.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchCategory" prefHeight="25.0" prefWidth="61.0" text="Search" />
             <Pane layoutX="20.0" layoutY="52.0" prefHeight="93.0" prefWidth="426.0" style="-fx-background-color: gray;">
                <children>
-                  <Button fx:id="categoryDeleteBtn" layoutX="359.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="61.0" text="Delete" />
+                  <Button fx:id="categoryDeleteBtn" disable="true" layoutX="359.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="61.0" text="Delete" />
                   <Label layoutX="14.0" layoutY="31.0" text="Name :" />
                   <Label layoutX="344.0" layoutY="12.0" text="ID : " />
                   <Label layoutX="14.0" layoutY="56.0" text="Extra Note : " />

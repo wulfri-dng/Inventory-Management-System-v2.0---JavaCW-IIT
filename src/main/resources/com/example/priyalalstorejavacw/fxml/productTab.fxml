@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
-
 <AnchorPane prefHeight="672.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.ProductTabController">
    <children>
       <TableView fx:id="productTable" layoutX="32.0" layoutY="58.0" prefHeight="244.0" prefWidth="874.0">
@@ -30,7 +29,7 @@
             <Button layoutX="385.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchProduct" prefHeight="25.0" prefWidth="61.0" text="Search" />
             <Pane layoutX="20.0" layoutY="52.0" prefHeight="93.0" prefWidth="426.0" style="-fx-background-color: gray;">
                <children>
-                  <Button fx:id="productDeleteBtn" layoutX="359.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteCategory" prefHeight="25.0" prefWidth="61.0" text="Delete" />
+                  <Button fx:id="productDeleteBtn" disable="true" layoutX="359.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="25.0" prefWidth="61.0" text="Delete" />
                   <Label layoutX="14.0" layoutY="31.0" text="Name :" />
                   <Label layoutX="344.0" layoutY="12.0" text="ID : " />
                   <Label layoutX="14.0" layoutY="56.0" text="Category :" />

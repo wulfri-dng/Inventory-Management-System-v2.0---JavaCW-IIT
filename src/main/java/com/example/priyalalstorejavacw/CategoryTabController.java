@@ -31,7 +31,7 @@ public class CategoryTabController {
     FindIterable<Document> categoryIterDoc = LoginController.categoryCollection.find();
 
     int searchedCategoryID;
-    String searchedCategoryIdOrName = "";
+//    String searchedCategoryIdOrName = "";
 
     public void initialize() {
         updateCategoryTable();
@@ -41,7 +41,7 @@ public class CategoryTabController {
         ObservableList<Category> list = FXCollections.observableArrayList();
 
         for (Document doc: categoryIterDoc) {
-            int currentCategoryId = (Integer) doc.get("id");
+            int currentCategoryId = (int) doc.get("id");
             String currentCategoryName = (String) doc.get("name");
             String currentCategoryNote = (String) doc.get("note");  
             Category currentCategory = new Category(currentCategoryId, currentCategoryName, currentCategoryNote);
@@ -91,17 +91,18 @@ public class CategoryTabController {
             int currentCategoryId = (Integer) doc.get("id");
             String currentCategoryName = (String) doc.get("name");
             String currentCategoryNote = (String) doc.get("note");
-            if (searchedCategoryIdOrName.equals("" + currentCategoryId) || searchedCategoryIdOrName.equals(currentCategoryName)) {
+            if (editCategorySearchTxtBox.getText().equals("" + currentCategoryId) || editCategorySearchTxtBox.getText().equals(currentCategoryName)) {
                 isFound = true;
                 searchedCategoryID = currentCategoryId;
-                searchedCategoryIdOrName = ("" + currentCategoryId);
+//                searchedCategoryIdOrName = ("" + currentCategoryId);
 
                 categoryNotificationLabel.setText("Category found");
                 showCategoryNote.setText(currentCategoryNote);
                 showCategoryName.setText(currentCategoryName);
-                editCategoryNewCategoryName.setText(currentCategoryName);
                 showCategoryId.setText("" + currentCategoryId);
+                editCategoryNewCategoryName.setText(currentCategoryName);
                 editCategoryNewCategoryNote.setText(currentCategoryNote);
+                categoryDeleteBtn.setDisable(false);
             }
         }
         if (!isFound) {
@@ -111,34 +112,19 @@ public class CategoryTabController {
             showCategoryNote.setText("");
             editCategoryNewCategoryNote.setText("");
             editCategoryNewCategoryName.setText("");
+            categoryDeleteBtn.setDisable(true);
         }
     }
 
     public void searchCategory() {
-        searchedCategoryIdOrName = editCategorySearchTxtBox.getText();
-//        searchedCategoryID = Integer.parseInt(editCategorySearchTxtBox.getText());
-//        searchedCategoryName = editCategorySearchTxtBox.getText();
+//        searchedCategoryIdOrName = editCategorySearchTxtBox.getText();
         searchFromCategory();
-//        for (Document doc: categoryIterDoc) {
-//            int currentCategoryId = (Integer) doc.get("id");
-//            String currentCategoryName = (String) doc.get("name");
-//            String currentCategoryNote = (String) doc.get("note");
-//            if (editCategorySearchTxtBox.getText().equals("" + currentCategoryId) || editCategorySearchTxtBox.getText().equals(currentCategoryName)) {
-//                searchedCategoryID = currentCategoryId;
-//
-//                showCategoryName.setText(currentCategoryName);
-//                showCategoryId.setText("" + currentCategoryId);
-//                showCategoryNote.setText(currentCategoryNote);
-//            }
-//        }
     }
-
-
 
     public void updateCategory(ActionEvent actionEvent) {
         if (!editCategoryNewCategoryName.getText().equals("")) {
             BasicDBObject query = new BasicDBObject();
-            query.put("id", 500);
+            query.put("id", searchedCategoryID);
 
             // UPDATE CATEGORY NAME
             BasicDBObject newUpdateName = new BasicDBObject();
@@ -176,6 +162,10 @@ public class CategoryTabController {
         showCategoryName.setText("");
         showCategoryId.setText("");
         showCategoryNote.setText("");
+        editCategoryNewCategoryName.setText("");
+        editCategoryNewCategoryNote.setText("");
+
+        categoryDeleteBtn.setDisable(true);
     }
 
     public boolean deleteCheck() {
