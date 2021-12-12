@@ -5,13 +5,15 @@ public class Product {
     String name;
     Category category;
     String categoryName;
+    String lastUpdatedDateTime;
     int stockCount;
 
-    public Product(int id, String name, String categoryName, int stockCount) {
+    public Product(int id, String name, String categoryName, int stockCount, String lastUpdatedDateTime) {
         this.id = id;
         this.name = name;
         this.categoryName = categoryName;
         this.stockCount = stockCount;
+        this.lastUpdatedDateTime = lastUpdatedDateTime;
     }
 
     public int getId() {
@@ -52,5 +54,13 @@ public class Product {
 
     public void setStockCount(int stockCount) {
         this.stockCount = stockCount;
+    }
+
+    public String getLastUpdatedDateTime() {
+        return lastUpdatedDateTime;
+    }
+
+    public void setLastUpdatedDateTime(String lastUpdatedDateTime) {
+        this.lastUpdatedDateTime = lastUpdatedDateTime;
     }
 }

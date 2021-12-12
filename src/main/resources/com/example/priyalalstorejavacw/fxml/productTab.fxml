@@ -34,7 +34,7 @@
             </Pane>
             <Label layoutX="23.0" layoutY="163.0" text="Enter new Product Name :" />
             <TextField fx:id="editProductNewProductName" layoutX="179.0" layoutY="160.0" prefHeight="25.0" prefWidth="267.0" />
-            <Button layoutX="383.0" layoutY="236.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="25.0" prefWidth="61.0" text="Update" />
+            <Button fx:id="productUpdateBtn" disable="true" layoutX="383.0" layoutY="236.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="25.0" prefWidth="61.0" text="Update" />
             <Label layoutX="23.0" layoutY="198.0" text="Select Category : " />
             <ComboBox fx:id="editProductComboBox" layoutX="179.0" layoutY="197.0" prefWidth="150.0" />
          </children>
@@ -65,10 +65,10 @@
       <TableView fx:id="productTable" layoutX="21.0" layoutY="45.0" prefHeight="244.0" prefWidth="874.0">
          <columns>
             <TableColumn fx:id="productTableId" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="productTableName" prefWidth="273.0" text="Name" />
-            <TableColumn fx:id="productTableCategory" prefWidth="267.0" text="Category" />
-            <TableColumn fx:id="productTableStockCount" prefWidth="100.0" text="Stock Count" />
-            <TableColumn fx:id="productTableUpdatedDate" prefWidth="158.0" text="Last Updated Date" />
+            <TableColumn fx:id="productTableName" prefWidth="257.0" text="Name" />
+            <TableColumn fx:id="productTableCategory" prefWidth="268.0" text="Category" />
+            <TableColumn fx:id="productTableStockCount" prefWidth="115.0" text="Stock Count" />
+            <TableColumn fx:id="productTableUpdatedDate" prefWidth="158.0" text="Last Updated Time" />
          </columns>
       </TableView>
    </children>

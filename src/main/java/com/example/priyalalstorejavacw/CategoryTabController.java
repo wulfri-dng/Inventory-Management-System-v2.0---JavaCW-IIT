@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CategoryTabController {
     public TableView<Category> categoryTable;
@@ -27,6 +28,7 @@ public class CategoryTabController {
     public TextArea editCategoryNewCategoryNote;
     public Button categoryDeleteBtn;
     public Label categoryNotificationLabel;
+    public Button categoryUpdateBtn;
 
     FindIterable<Document> categoryIterDoc = LoginController.categoryCollection.find();
 
@@ -65,25 +67,74 @@ public class CategoryTabController {
         }
     }
 
+    public boolean checkCategoryAvailability(String categoryName) {
+        for (Document doc: categoryIterDoc) {
+            String currentCategory = (String) doc.get("name");
+            if (currentCategory.toLowerCase(Locale.ROOT).equals(categoryName.toLowerCase())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void addCategory(ActionEvent actionEvent) {
         Document document = new Document();
         String categoryName = addCategoryName.getText();
         String categoryNote = addCategoryNote.getText();
 
-        if (!(addCategoryName.getText().equals(""))) {
-            document.put("name", categoryName);
-            if (!(addCategoryNote.getText().equals(""))) {
-                document.put("note", categoryNote);
+        if (checkCategoryAvailability(categoryName)) {
+            if (!(addCategoryName.getText().equals(""))) {
+                document.put("name", categoryName);
+                if (!(addCategoryNote.getText().equals(""))) {
+                    document.put("note", categoryNote);
+                }
+                document.put("id", generateCategoryID());
+                LoginController.categoryCollection.insertOne(document);
             }
-            document.put("id", generateCategoryID());
-            LoginController.categoryCollection.insertOne(document);
+            addCategoryName.setText("");
+            addCategoryNote.setText("");
+            updateCategoryTable();
         }
-        addCategoryName.setText("");
-        addCategoryNote.setText("");
-        updateCategoryTable();
     }
 
-    public void searchFromCategory() {
+    public void updateCategory(ActionEvent actionEvent) {
+        String newCategoryName = editCategoryNewCategoryName.getText();
+        if (checkCategoryAvailability(newCategoryName)) {
+            if (!newCategoryName.equals("")) {
+                BasicDBObject query = new BasicDBObject();
+                query.put("id", searchedCategoryID);
+
+                // UPDATE CATEGORY NAME
+                BasicDBObject newUpdateName = new BasicDBObject();
+                newUpdateName.put("name", newCategoryName);
+
+                BasicDBObject updateDocumentName = new BasicDBObject();
+                updateDocumentName.put("$set", newUpdateName);
+
+                LoginController.categoryCollection.updateOne(query, updateDocumentName);
+
+                // UPDATE CATEGORY NOTE
+                BasicDBObject newUpdateNote = new BasicDBObject();
+                newUpdateNote.put("note", editCategoryNewCategoryNote.getText());
+
+                BasicDBObject updateDocumentNote = new BasicDBObject();
+                updateDocumentNote.put("$set", newUpdateNote);
+
+                LoginController.categoryCollection.updateOne(query, updateDocumentNote);
+
+                updateCategoryTable();
+                searchCategory();
+                editCategoryNewCategoryName.setText("");
+                editCategoryNewCategoryNote.setText("");
+                categoryUpdateBtn.setDisable(true);
+                categoryNotificationLabel.setText("Category updated successfully");
+            }
+        } else {
+            categoryNotificationLabel.setText(newCategoryName + " is already a category.");
+        }
+    }
+
+    public void searchCategory() {
         boolean isFound = false;
         for (Document doc: categoryIterDoc) {
             int currentCategoryId = (Integer) doc.get("id");
@@ -94,12 +145,13 @@ public class CategoryTabController {
                 searchedCategoryID = currentCategoryId;
 
                 categoryNotificationLabel.setText("Category found");
-                showCategoryNote.setText(currentCategoryNote);
                 showCategoryName.setText(currentCategoryName);
+                showCategoryNote.setText(currentCategoryNote);
                 showCategoryId.setText("" + currentCategoryId);
                 editCategoryNewCategoryName.setText(currentCategoryName);
                 editCategoryNewCategoryNote.setText(currentCategoryNote);
                 categoryDeleteBtn.setDisable(false);
+                categoryUpdateBtn.setDisable(false);
             }
         }
         if (!isFound) {
@@ -110,41 +162,7 @@ public class CategoryTabController {
             editCategoryNewCategoryNote.setText("");
             editCategoryNewCategoryName.setText("");
             categoryDeleteBtn.setDisable(true);
-        }
-    }
-
-    public void searchCategory() {
-        searchFromCategory();
-    }
-
-    public void updateCategory(ActionEvent actionEvent) {
-        if (!editCategoryNewCategoryName.getText().equals("")) {
-            BasicDBObject query = new BasicDBObject();
-            query.put("id", searchedCategoryID);
-
-            // UPDATE CATEGORY NAME
-            BasicDBObject newUpdateName = new BasicDBObject();
-            newUpdateName.put("name", editCategoryNewCategoryName.getText());
-
-            BasicDBObject updateDocumentName = new BasicDBObject();
-            updateDocumentName.put("$set", newUpdateName);
-
-            LoginController.categoryCollection.updateOne(query, updateDocumentName);
-
-            // UPDATE CATEGORY NOTE
-            BasicDBObject newUpdateNote = new BasicDBObject();
-            newUpdateNote.put("note", editCategoryNewCategoryNote.getText());
-
-            BasicDBObject updateDocumentNote = new BasicDBObject();
-            updateDocumentNote.put("$set", newUpdateNote);
-
-            LoginController.categoryCollection.updateOne(query, updateDocumentNote);
-
-            updateCategoryTable();
-            searchFromCategory();
-            editCategoryNewCategoryName.setText("");
-            editCategoryNewCategoryNote.setText("");
-            categoryNotificationLabel.setText("Category updated successfully");
+            categoryUpdateBtn.setDisable(true);
         }
     }
 
@@ -160,7 +178,7 @@ public class CategoryTabController {
         showCategoryNote.setText("");
         editCategoryNewCategoryName.setText("");
         editCategoryNewCategoryNote.setText("");
-
+        categoryUpdateBtn.setDisable(true);
         categoryDeleteBtn.setDisable(true);
     }
 
@@ -168,8 +186,6 @@ public class CategoryTabController {
         boolean isDeleted = true;
         for (Document doc: categoryIterDoc) {
             int currentCategoryId = (Integer) doc.get("id");
-            System.out.println("In DB - " + currentCategoryId);
-            System.out.println(searchedCategoryID);
 
             if (currentCategoryId == searchedCategoryID) {
                 System.out.println("deleted");

@@ -3,45 +3,84 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1090.0" stylesheets="@../css/loginStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.LoginController">
    <children>
-      <TextField fx:id="username" layoutX="637.0" layoutY="325.0" prefHeight="27.0" prefWidth="278.0" promptText="Enter username" styleClass="textBox" />
-      <TextField fx:id="password" layoutX="638.0" layoutY="388.0" prefHeight="27.0" prefWidth="278.0" promptText="Enter password" styleClass="textBox" />
-      <Label layoutX="638.0" layoutY="304.0" text="Username" />
-      <Label layoutX="639.0" layoutY="369.0" text="Password" />
-      <Button id="loginBtn" fx:id="loginBtn" layoutX="726.0" layoutY="463.0" mnemonicParsing="false" onAction="#logInPressed" prefHeight="27.0" prefWidth="103.0" style="-fx-background-radius: 12; -fx-font-weight: 700; -fx-text-fill: white;" text="Log In">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Label fx:id="topLabel" layoutX="237.0" layoutY="146.0" prefHeight="17.0" prefWidth="0.0" />
-      <Label layoutX="635.0" layoutY="178.0" text="Welcome back!">
-         <font>
-            <Font name="Verdana" size="31.0" />
-         </font>
-      </Label>
-      <Label layoutX="635.0" layoutY="225.0" prefHeight="51.0" prefWidth="288.0" text="Please enter you username and password to log in to to system" wrapText="true">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="827.0" layoutY="422.0" text="Forgot password" textFill="#0a5ada">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Label>
-      <Pane prefHeight="668.0" prefWidth="545.0" style="-fx-background-color: #1C7947;">
+      <ImageView fitHeight="490.0" fitWidth="634.0" layoutX="473.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Login%20Image.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="668.0" prefWidth="545.0" style="-fx-background-color: #1C2024; -fx-opacity: 67%;" />
+      <Pane layoutX="82.0" layoutY="192.0" prefHeight="390.0" prefWidth="372.0" style="-fx-background-color: white; -fx-background-radius: 10;">
          <children>
-            <ImageView fitHeight="205.0" fitWidth="334.0" layoutX="70.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="username" focusTraversable="false" layoutX="92.0" layoutY="154.0" prefHeight="27.0" prefWidth="207.0" promptText="Enter Username" styleClass="textBox" />
+            <Button id="loginBtn" fx:id="loginBtn" layoutX="131.0" layoutY="323.0" mnemonicParsing="false" onAction="#logInPressed" prefHeight="27.0" prefWidth="103.0" style="-fx-background-radius: 10; -fx-font-weight: 700; -fx-text-fill: white;" text="Log In">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Candara" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="topLabel" layoutX="92.0" layoutY="124.0" prefHeight="17.0" prefWidth="207.0" />
+            <Label layoutX="50.0" layoutY="39.0" style="-fx-font-weight: 600;" text="Welcome back!">
+               <font>
+                  <Font name="Arial" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="66.0" prefHeight="51.0" prefWidth="268.0" text="Please enter you username and password to log in to to system" wrapText="true">
+               <font>
+                  <Font name="Candara" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="209.0" layoutY="259.0" text="Forgot password" textFill="#565f5a">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <ImageView fitHeight="17.0" fitWidth="15.0" layoutX="65.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
                <image>
-<!--                  <Image url="@imgs/Login%20Image%202.png" />-->
+                  <Image url="@../img/user-alt-solid.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="17.0" fitWidth="15.0" layoutX="65.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" style="visibility: none;">
+               <image>
+                  <Image url="@../img/unlock-alt-solid.png" />
+               </image>
+            </ImageView>
+            <Line id="fieldUnderline" endX="136.0" layoutX="163.0" layoutY="179.0" startX="-100.0" stroke="#565f5a" style="visibility: no;" />
+            <Line endX="136.0" fill="#537963" layoutX="161.0" layoutY="252.0" startX="-100.0" stroke="#565f5a" style="visibility: no;">
+               <effect>
+                  <Glow />
+               </effect>
+            </Line>
+            <PasswordField fx:id="password" layoutX="91.0" layoutY="228.0" prefHeight="25.0" prefWidth="207.0" promptText="Enter Password" styleClass="textBox" />
          </children>
       </Pane>
+      <Pane layoutX="82.0" layoutY="87.0" prefHeight="89.0" prefWidth="372.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="108.0" layoutY="22.0" style="-fx-font-weight: 8000;" text="Priyalal Store">
+               <font>
+                  <Font name="Arial" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="87.0" layoutY="50.0" prefHeight="27.0" prefWidth="192.0" text="Inventory Management System" wrapText="true">
+               <font>
+                  <Font name="Candara" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="545.0" layoutY="-1.0" prefHeight="668.0" prefWidth="545.0" style="-fx-background-color: #1C2024; -fx-opacity: 30%;" />
    </children>
 </AnchorPane>

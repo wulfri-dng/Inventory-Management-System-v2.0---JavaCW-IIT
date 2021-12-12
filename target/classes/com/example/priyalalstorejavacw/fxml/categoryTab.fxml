@@ -42,7 +42,7 @@
             <Label layoutX="23.0" layoutY="163.0" text="Enter new Category Name :" />
             <TextField fx:id="editCategoryNewCategoryName" layoutX="179.0" layoutY="160.0" prefHeight="25.0" prefWidth="267.0" />
             <Label layoutX="25.0" layoutY="199.0" text="Add Category Extra Note :" />
-            <Button layoutX="384.0" layoutY="259.0" mnemonicParsing="false" onAction="#updateCategory" prefHeight="25.0" prefWidth="61.0" text="Update" />
+            <Button fx:id="categoryUpdateBtn" disable="true" layoutX="384.0" layoutY="259.0" mnemonicParsing="false" onAction="#updateCategory" prefHeight="25.0" prefWidth="61.0" text="Update" />
             <TextArea fx:id="editCategoryNewCategoryNote" layoutX="179.0" layoutY="197.0" prefHeight="52.0" prefWidth="267.0" wrapText="true" />
          </children>
       </Pane>

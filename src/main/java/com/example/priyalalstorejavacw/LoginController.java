@@ -8,11 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 
@@ -28,7 +30,7 @@ public class LoginController {
     @FXML
     TextField username;
     @FXML
-    TextField password;
+    PasswordField password;
 
     @FXML
     public void logInPressed(ActionEvent event) throws IOException {
@@ -49,7 +51,6 @@ public class LoginController {
             topLabel.setText("Invalid username or password");
         }
     }
-
 
 //    VBox vbox = new VBox(new Text("Invalid Username or Password"), new Button("Ok"));
 //            vbox.setAlignment(Pos.CENTER);
