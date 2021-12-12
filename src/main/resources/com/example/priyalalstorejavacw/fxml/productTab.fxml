@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,17 +12,10 @@
 
 <AnchorPane prefHeight="672.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.ProductTabController">
    <children>
-      <TableView fx:id="productTable" layoutX="32.0" layoutY="58.0" prefHeight="244.0" prefWidth="874.0">
-         <columns>
-            <TableColumn fx:id="productTableId" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="productTableName" prefWidth="316.0" text="Name" />
-            <TableColumn fx:id="productTableCategory" prefWidth="305.0" text="Category" />
-         </columns>
-      </TableView>
-      <Label layoutX="33.0" layoutY="326.0" text="Edit/ Delete Product" />
-      <Label layoutX="34.0" layoutY="27.0" text="Product List" />
-      <Line endX="228.0" layoutX="134.0" layoutY="48.0" startX="-100.0" />
-      <Pane layoutX="31.0" layoutY="358.0" prefHeight="276.0" prefWidth="461.0" style="-fx-background-color: #ececed;">
+      <Label layoutX="25.0" layoutY="305.0" text="Edit/ Delete Product" />
+      <Label layoutX="23.0" layoutY="14.0" text="Product List" />
+      <Line endX="228.0" layoutX="123.0" layoutY="35.0" startX="-100.0" />
+      <Pane layoutX="23.0" layoutY="337.0" prefHeight="276.0" prefWidth="461.0" style="-fx-background-color: #ececed;">
          <children>
             <Label layoutX="19.0" layoutY="18.0" text="Product Name or ID : " />
             <TextField fx:id="editProductSearchTxtBox" layoutX="144.0" layoutY="14.0" prefHeight="25.0" prefWidth="233.0" />
@@ -43,20 +36,40 @@
             <TextField fx:id="editProductNewProductName" layoutX="179.0" layoutY="160.0" prefHeight="25.0" prefWidth="267.0" />
             <Button layoutX="383.0" layoutY="236.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="25.0" prefWidth="61.0" text="Update" />
             <Label layoutX="23.0" layoutY="198.0" text="Select Category : " />
-            <ChoiceBox fx:id="editProductChoiceBox" layoutX="179.0" layoutY="197.0" prefWidth="150.0" />
+            <ComboBox fx:id="editProductComboBox" layoutX="179.0" layoutY="197.0" prefWidth="150.0" />
          </children>
       </Pane>
-      <Line endX="89.0" layoutX="133.0" layoutY="347.0" startX="-100.0" />
-      <Pane layoutX="522.0" layoutY="359.0" prefHeight="137.0" prefWidth="387.0" style="-fx-background-color: #ececed;">
+      <Line endX="89.0" layoutX="125.0" layoutY="326.0" startX="-100.0" />
+      <Pane layoutX="508.0" layoutY="337.0" prefHeight="137.0" prefWidth="387.0" style="-fx-background-color: #ececed;">
          <children>
             <Label layoutX="16.0" layoutY="20.0" text="Product Name : " />
             <TextField fx:id="addProductName" layoutX="119.0" layoutY="17.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter category name" />
-            <Button layoutX="269.0" layoutY="97.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="104.0" text="Add Category" />
+            <Button layoutX="269.0" layoutY="97.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="104.0" text="Add Product" />
             <Label layoutX="17.0" layoutY="56.0" text="Select Category : " />
-            <ChoiceBox fx:id="addProductChoiceBox" layoutX="119.0" layoutY="53.0" prefWidth="150.0" />
+            <ComboBox fx:id="addProductComboBox" layoutX="119.0" layoutY="61.0" prefWidth="150.0" />
          </children>
       </Pane>
-      <Label layoutX="523.0" layoutY="327.0" text="Add Product" />
-      <Line endX="89.0" layoutX="624.0" layoutY="348.0" startX="-100.0" />
+      <Label layoutX="509.0" layoutY="305.0" text="Add Product" />
+      <Line endX="89.0" layoutX="610.0" layoutY="326.0" startX="-100.0" />
+      <Pane layoutX="509.0" layoutY="521.0" prefHeight="131.0" prefWidth="387.0" style="-fx-background-color: #ececed;">
+         <children>
+            <Label layoutX="16.0" layoutY="20.0" text="Stock Count :" />
+            <TextField fx:id="addStockCount" layoutX="119.0" layoutY="17.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter stock count" />
+            <Button layoutX="269.0" layoutY="92.0" mnemonicParsing="false" onAction="#addStock" prefHeight="25.0" prefWidth="104.0" text="Add Stock" />
+            <Label layoutX="17.0" layoutY="56.0" text="Select Product : " />
+            <ComboBox fx:id="addStockComboBox" layoutX="119.0" layoutY="61.0" prefWidth="150.0" />
+         </children>
+      </Pane>
+      <Label layoutX="509.0" layoutY="490.0" text="Add / Change Stock" />
+      <Line endX="89.0" layoutX="610.0" layoutY="511.0" startX="-100.0" />
+      <TableView fx:id="productTable" layoutX="21.0" layoutY="45.0" prefHeight="244.0" prefWidth="874.0">
+         <columns>
+            <TableColumn fx:id="productTableId" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="productTableName" prefWidth="273.0" text="Name" />
+            <TableColumn fx:id="productTableCategory" prefWidth="267.0" text="Category" />
+            <TableColumn fx:id="productTableStockCount" prefWidth="100.0" text="Stock Count" />
+            <TableColumn fx:id="productTableUpdatedDate" prefWidth="158.0" text="Last Updated Date" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

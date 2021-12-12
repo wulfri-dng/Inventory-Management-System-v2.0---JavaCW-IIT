@@ -31,7 +31,6 @@ public class CategoryTabController {
     FindIterable<Document> categoryIterDoc = LoginController.categoryCollection.find();
 
     int searchedCategoryID;
-//    String searchedCategoryIdOrName = "";
 
     public void initialize() {
         updateCategoryTable();
@@ -47,7 +46,6 @@ public class CategoryTabController {
             Category currentCategory = new Category(currentCategoryId, currentCategoryName, currentCategoryNote);
             list.add(currentCategory);
         }
-
         categoryTableId.setCellValueFactory(new PropertyValueFactory<Category, Integer>("categoryId"));
         categoryTableName.setCellValueFactory(new PropertyValueFactory<Category, String>("name"));
         categoryTableDescription.setCellValueFactory(new PropertyValueFactory<Category, String>("note"));
@@ -94,7 +92,6 @@ public class CategoryTabController {
             if (editCategorySearchTxtBox.getText().equals("" + currentCategoryId) || editCategorySearchTxtBox.getText().equals(currentCategoryName)) {
                 isFound = true;
                 searchedCategoryID = currentCategoryId;
-//                searchedCategoryIdOrName = ("" + currentCategoryId);
 
                 categoryNotificationLabel.setText("Category found");
                 showCategoryNote.setText(currentCategoryNote);
@@ -117,7 +114,6 @@ public class CategoryTabController {
     }
 
     public void searchCategory() {
-//        searchedCategoryIdOrName = editCategorySearchTxtBox.getText();
         searchFromCategory();
     }
 

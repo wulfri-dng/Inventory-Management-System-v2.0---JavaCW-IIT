@@ -18,35 +18,6 @@ public class MenuController {
     public Button menuCloseBtn;
     public BorderPane menuBorderPane;
 
-    public void addCategory(ActionEvent actionEvent) {
-    }
-
-    public void viewCategories(ActionEvent actionEvent) {
-    }
-
-    public void editCategory(ActionEvent actionEvent) {
-    }
-
-    public void deleteCategory(ActionEvent actionEvent) {
-    }
-
-    public void addProduct(ActionEvent actionEvent) {
-    }
-
-    public void searchProduct(ActionEvent actionEvent) {
-    }
-
-    public void editProduct(ActionEvent actionEvent) {
-    }
-
-    public void searchDeleteCategory(ActionEvent actionEvent) {
-    }
-
-    public void printCategories(ActionEvent actionEvent) {
-    }
-
-
-
     public void home(MouseEvent mouseEvent) {
         menuBorderPane.setCenter(menuAnchorPane);
     }

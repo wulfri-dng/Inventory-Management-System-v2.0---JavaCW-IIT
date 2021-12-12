@@ -5,11 +5,13 @@ public class Product {
     String name;
     Category category;
     String categoryName;
+    int stockCount;
 
-    public Product(int id, String name, String categoryName) {
+    public Product(int id, String name, String categoryName, int stockCount) {
         this.id = id;
         this.name = name;
         this.categoryName = categoryName;
+        this.stockCount = stockCount;
     }
 
     public int getId() {
@@ -42,5 +44,13 @@ public class Product {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public int getStockCount() {
+        return stockCount;
+    }
+
+    public void setStockCount(int stockCount) {
+        this.stockCount = stockCount;
     }
 }

@@ -17,6 +17,8 @@ public class ProductTabController {
     public TableColumn<Product, Integer> productTableId;
     public TableColumn<Product, String> productTableName;
     public TableColumn<Product, String> productTableCategory;
+    public TableColumn<Product, Integer> productTableStockCount;
+    public TableColumn<Product, String> productTableUpdatedDate;
 
     public TextField editProductSearchTxtBox;
     public Button productDeleteBtn;
@@ -26,8 +28,11 @@ public class ProductTabController {
     public Label showProductCategory;
     public TextField editProductNewProductName;
     public TextField addProductName;
-    public ChoiceBox<String> editProductChoiceBox;
     public ChoiceBox<String> addProductChoiceBox;
+    public TextField addStockCount;
+    public ComboBox<String> editProductComboBox;
+    public ComboBox<String> addProductComboBox;
+    public ComboBox<String> addStockComboBox;
 
     FindIterable<Document> productIterDoc = LoginController.productCollection.find();
     FindIterable<Document> categoryIterDoc = LoginController.categoryCollection.find();
@@ -35,33 +40,52 @@ public class ProductTabController {
     int searchedProductID;
 
     public void initialize() {
-        updateProductTable(true);
+        updateProductTab();
     }
 
-    public void updateProductTable(boolean updateChoiceBox) {
+    public String getNameFromCategoryId(int categoryId) {
+        String categoryName = null;
+        for (Document doc : categoryIterDoc) {
+            int currentCategoryId = (Integer) doc.get("id");
+            if (currentCategoryId == categoryId) {
+                categoryName = (String) doc.get("name");
+                break;
+            }
+        }
+        return categoryName;
+    }
+
+    public void updateProductTab() {
         ObservableList<Product> productList = FXCollections.observableArrayList();
 
         for (Document doc: productIterDoc) {
             int currentProductId = (Integer) doc.get("id");
             String currentProductName = (String) doc.get("name");
-            String currentProductCategory = (String) doc.get("categoryName");
-            Product currentProduct = new Product(currentProductId, currentProductName, currentProductCategory);
+            int currentProductCategoryId = (Integer) doc.get("categoryId");
+            String currentProductCategoryName = getNameFromCategoryId(currentProductCategoryId);
+            int currentProductStockCount = (Integer) doc.get("stockCount");
+            Product currentProduct = new Product(currentProductId, currentProductName, currentProductCategoryName, currentProductStockCount);
             productList.add(currentProduct);
         }
-
         productTableId.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
         productTableName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         productTableCategory.setCellValueFactory(new PropertyValueFactory<Product, String>("categoryName"));
-
-        // UPDATE CHOICE BOX
-        if (updateChoiceBox) {
-            for (Document doc: categoryIterDoc) {
-                String currentCategory = (String) doc.get("name");
-                addProductChoiceBox.getItems().add(currentCategory);
-                editProductChoiceBox.getItems().add(currentCategory);
-            }
-        }
+        productTableStockCount.setCellValueFactory(new PropertyValueFactory<Product, Integer>("stockCount"));
         productTable.setItems(productList);
+
+        // UPDATE COMBO BOXES
+        ObservableList<String> categoryNameList = FXCollections.observableArrayList();
+        for (Document doc: categoryIterDoc) {
+            categoryNameList.add((String)doc.get("name"));
+        }
+        editProductComboBox.setItems(categoryNameList);
+        addProductComboBox.setItems(categoryNameList);
+
+        ObservableList<String> productNameList = FXCollections.observableArrayList();
+        for (Document doc: productIterDoc) {
+            productNameList.add((String)doc.get("name"));
+        }
+        addStockComboBox.setItems(productNameList);
     }
 
     public int generateProductID() {
@@ -77,20 +101,40 @@ public class ProductTabController {
         }
     }
 
+    public int getIdFromCategoryName(String categoryName) {
+        int categoryId = 0;
+        for (Document doc : categoryIterDoc) {
+            String currentCategoryName = (String) doc.get("name");
+            if (currentCategoryName.equals(categoryName)) {
+                categoryId = (Integer) doc.get("id");
+                break;
+            }
+        }
+        return categoryId;
+    }
+
     public void addProduct(ActionEvent actionEvent) {
         Document productDocument = new Document();
-
-        if (!(addProductName.getText().equals("")) && !addProductChoiceBox.getValue().equals("")) {
-            productDocument.put("name", addProductName.getText());
-            productDocument.put("categoryName", addProductChoiceBox.getValue());
+        boolean canRun = false;
+        try {
+            if (!(addProductName.getText().equals("")) && !addProductComboBox.getValue().equals("")) {
+                canRun = true;
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e);
+        }
+        if (canRun) {
             productDocument.put("id", generateProductID());
+            productDocument.put("name", addProductName.getText());
+            productDocument.put("categoryId", getIdFromCategoryName(addProductComboBox.getValue()));
+            productDocument.put("stockCount", 0);
             LoginController.productCollection.insertOne(productDocument);
         }
         addProductName.setText("");
-        updateProductTable(false);
+        updateProductTab();
     }
 
-    public void searchFromProduct() {
+    public void searchProduct() {
         boolean isFound = false;
         for (Document doc: productIterDoc) {
             int currentProductId = (Integer) doc.get("id");
@@ -104,10 +148,7 @@ public class ProductTabController {
                 showProductId.setText("" + currentProductId);
                 showProductName.setText(currentProductName);
                 showProductCategory.setText(currentProductCategory);
-
                 editProductNewProductName.setText(currentProductName);
-//                editProductChoiceBox.getItems().add(currentProductCategory);
-
                 productDeleteBtn.setDisable(false);
             }
         }
@@ -116,7 +157,6 @@ public class ProductTabController {
             showProductId.setText("");
             showProductName.setText("");
             showProductCategory.setText("");
-
             editProductNewProductName.setText("");
 //            editProductChoiceBox.setText("");
 
@@ -124,12 +164,16 @@ public class ProductTabController {
         }
     }
 
-    public void searchProduct() {
-        searchFromProduct();
-    }
-
     public void updateProduct(ActionEvent actionEvent) {
-        if (!editProductNewProductName.getText().equals("")) {
+        boolean canRun = false;
+        try {
+            if (!editProductNewProductName.getText().equals("") && !(editProductComboBox.getValue().equals(""))) {
+                canRun = true;
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e);
+        }
+        if (canRun) {
             BasicDBObject query = new BasicDBObject();
             query.put("id", searchedProductID);
 
@@ -144,18 +188,20 @@ public class ProductTabController {
 
             // UPDATE PRODUCT CATEGORY
             BasicDBObject newUpdateNote = new BasicDBObject();
-            newUpdateNote.put("categoryName", editProductChoiceBox.getValue());
+            newUpdateNote.put("categoryId", getIdFromCategoryName(editProductComboBox.getValue()));
 
             BasicDBObject updateDocumentNote = new BasicDBObject();
             updateDocumentNote.put("$set", newUpdateNote);
 
             LoginController.productCollection.updateOne(query, updateDocumentNote);
 
-            updateProductTable(false);
-            searchFromProduct();
+            updateProductTab();
+            searchProduct();
             editProductNewProductName.setText("");
 //            editProductChoiceBox.setText("");
-            productNotificationLabel.setText("Product updated successfully");
+            productNotificationLabel.setText("Product updated successfully.");
+        } else {
+            productNotificationLabel.setText("Error. Enter a new product name and category.");
         }
     }
 
@@ -164,12 +210,11 @@ public class ProductTabController {
         if (deleteCheck()) {
             productNotificationLabel.setText("Category deleted successfully");
         }
-        updateProductTable(false);
+        updateProductTab();
         showProductName.setText("");
         showProductId.setText("");
         showProductCategory.setText("");
         editProductNewProductName.setText("");
-
         productDeleteBtn.setDisable(true);
     }
 
@@ -183,5 +228,34 @@ public class ProductTabController {
             }
         }
         return isDeleted;
+    }
+
+    public void addStock(ActionEvent actionEvent) {
+        boolean canRun = false;
+        int stockCount = 0;
+        try {
+            stockCount = Integer.parseInt(addStockCount.getText());
+            if (!addStockCount.getText().equals("") && !addStockComboBox.getValue().equals("")) {
+                canRun = true;
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e);
+        }
+        if (canRun) {
+            BasicDBObject query = new BasicDBObject();
+            query.put("name", addStockComboBox.getValue());
+
+            // UPDATE PRODUCT STOCK
+            BasicDBObject productStockCount = new BasicDBObject();
+            productStockCount.put("stockCount", stockCount);
+
+            BasicDBObject updateDocumentStockCount = new BasicDBObject();
+            updateDocumentStockCount.put("$set", productStockCount);
+
+            LoginController.productCollection.updateOne(query, updateDocumentStockCount);
+
+            updateProductTab();
+            addStockCount.setText("");
+        }
     }
 }
