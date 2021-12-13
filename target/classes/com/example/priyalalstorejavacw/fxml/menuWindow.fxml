@@ -4,39 +4,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="menuBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1090.0" style="-fx-background-color: transparent;" stylesheets="@../css/menuStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.MenuController">
    <left>
-      <VBox prefHeight="550.0" prefWidth="175.0" style="-fx-background-color: #1C7947; -fx-background-radius: 0 0 0 10;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="550.0" prefWidth="175.0" style="-fx-background-color: #25354C; -fx-background-radius: 0 0 0 10;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onMouseClicked="#home" prefHeight="46.0" prefWidth="177.0" styleClass="menuBtn" text="Home" textFill="WHITE">
+            <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#home" prefHeight="46.0" prefWidth="177.0" styleClass="menuBtn" text="Home" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
+            <Line endX="68.17156982421875" endY="-9.577022552490234" startX="-102.12132263183594" startY="-9.577160835266113" stroke="#ffffff78" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#category" prefHeight="46.0" prefWidth="177.0" styleClass="menuBtn" text="Categories" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
+            <Line endX="68.17156982421875" endY="-9.577022552490234" layoutX="113.0" layoutY="66.0" startX="-102.12132263183594" startY="-9.577160835266113" stroke="#ffffff78" />
             <Button layoutX="10.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#products" prefHeight="46.0" prefWidth="177.0" styleClass="menuBtn" text="Products" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
+            <Line endX="68.17156982421875" endY="-9.577022552490234" layoutX="113.0" layoutY="114.0" startX="-102.12132263183594" startY="-9.577160835266113" stroke="#ffffff78" />
             <Button layoutX="10.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#stock" prefHeight="46.0" prefWidth="177.0" styleClass="menuBtn" text="Stocks" textFill="WHITE">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
+            <Line endX="68.17156982421875" endY="-9.577022552490234" layoutX="113.0" layoutY="206.0" startX="-102.12132263183594" startY="-9.577160835266113" stroke="#ffffff78" />
          </children>
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="menuAnchorPane" prefHeight="550.0" prefWidth="725.0" style="-fx-background-radius: 0 0 10 0; -fx-background-color: derive(cadetblue, -20%);;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="menuAnchorPane" prefHeight="550.0" prefWidth="725.0" style="-fx-background-radius: 0 0 10 0; -fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="menuCloseBtn" layoutX="643.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeMenu" text="Close" />
+            <Button fx:id="menuCloseBtn" layoutX="795.0" layoutY="39.0" mnemonicParsing="false" onAction="#closeMenu" text="Close" />
          </children></AnchorPane>
    </center>
 </BorderPane>

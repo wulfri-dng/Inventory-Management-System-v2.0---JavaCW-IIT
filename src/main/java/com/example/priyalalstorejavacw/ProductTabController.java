@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import org.bson.Document;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -37,6 +38,7 @@ public class ProductTabController {
     public ComboBox<String> addProductComboBox;
     public ComboBox<String> addStockComboBox;
     public Button productUpdateBtn;
+    public Pane editProductControlPane;
 
     FindIterable<Document> productIterDoc = LoginController.productCollection.find();
     FindIterable<Document> categoryIterDoc = LoginController.categoryCollection.find();
@@ -211,6 +213,7 @@ public class ProductTabController {
 
                 updateProductTab();
                 searchProduct();
+                editProductControlPane.setDisable(true);
                 editProductNewProductName.setText("");
 //            editProductChoiceBox.setText("");
                 productNotificationLabel.setText("Product updated successfully.");
@@ -268,6 +271,7 @@ public class ProductTabController {
                 editProductNewProductName.setText(currentProductName);
                 productDeleteBtn.setDisable(false);
                 productUpdateBtn.setDisable(false);
+                editProductControlPane.setDisable(false);
             }
         }
         if (!isFound) {
@@ -279,6 +283,7 @@ public class ProductTabController {
 //            editProductChoiceBox.setText("");
             productUpdateBtn.setDisable(true);
             productDeleteBtn.setDisable(true);
+            editProductControlPane.setDisable(true);
         }
     }
 
@@ -294,6 +299,7 @@ public class ProductTabController {
         showProductCategory.setText("");
         editProductNewProductName.setText("");
         productDeleteBtn.setDisable(true);
+        editProductControlPane.setDisable(true);
     }
 
     public boolean deleteCheck() {
@@ -307,6 +313,4 @@ public class ProductTabController {
         }
         return isDeleted;
     }
-
-
 }

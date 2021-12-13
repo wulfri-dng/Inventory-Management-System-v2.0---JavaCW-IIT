@@ -1,9 +1,9 @@
 #loginBtn {
-    -fx-background-color: #1C7947;
+    -fx-background-color: #36827F;
 }
 
 #loginBtn:hover {
-    -fx-background-color: #16633a;
+    -fx-background-color: #265f5d;
 }
 
 .textBox {
@@ -14,6 +14,6 @@
 }
 
 .textBox:hover {
-    -fx-border-color: #16633a;
+    -fx-border-color: #265f5d;
     /* visibility: no; */
 }

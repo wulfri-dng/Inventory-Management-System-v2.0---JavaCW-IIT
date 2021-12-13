@@ -4,6 +4,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.model.Filters;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import org.bson.Document;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +30,7 @@ public class CategoryTabController {
     public Button categoryDeleteBtn;
     public Label categoryNotificationLabel;
     public Button categoryUpdateBtn;
+    public Pane editControlPane;
 
     FindIterable<Document> categoryIterDoc = LoginController.categoryCollection.find();
 
@@ -127,6 +129,7 @@ public class CategoryTabController {
                 editCategoryNewCategoryName.setText("");
                 editCategoryNewCategoryNote.setText("");
                 categoryUpdateBtn.setDisable(true);
+                editControlPane.setDisable(true);
                 categoryNotificationLabel.setText("Category updated successfully");
             }
         } else {
@@ -152,6 +155,7 @@ public class CategoryTabController {
                 editCategoryNewCategoryNote.setText(currentCategoryNote);
                 categoryDeleteBtn.setDisable(false);
                 categoryUpdateBtn.setDisable(false);
+                editControlPane.setDisable(false);
             }
         }
         if (!isFound) {
@@ -163,6 +167,7 @@ public class CategoryTabController {
             editCategoryNewCategoryName.setText("");
             categoryDeleteBtn.setDisable(true);
             categoryUpdateBtn.setDisable(true);
+            editControlPane.setDisable(true);
         }
     }
 
@@ -180,6 +185,7 @@ public class CategoryTabController {
         editCategoryNewCategoryNote.setText("");
         categoryUpdateBtn.setDisable(true);
         categoryDeleteBtn.setDisable(true);
+        editControlPane.setDisable(true);
     }
 
     public boolean deleteCheck() {

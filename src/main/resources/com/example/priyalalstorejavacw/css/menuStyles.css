@@ -1,11 +1,24 @@
 .menuBtn {
     -fx-background-color:  trnsparent;
-    -fx-border-width: 0 0 2px 0;
-    -fx-border-color: white;
+    /* -fx-border-color: rgba(255, 255, 255, 0.459); */
+    -fx-border-width: 0 0 0px 7px;
+    -fx-border-color: #25354C;
+    -fx-border-bottom-color: red;
 }
 
 .menuBtn:hover {
-    -fx-background-color: #155834;
+    -fx-background-color: #1e2b3d;
+    -fx-border-width: 0 0 0px 7px;
+    -fx-border-color: #265f5d;
     -fx-cursor: hand;
 }
 
+.btn {
+    -fx-background-color: #36827F;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+.btn:hover {
+    -fx-background-color: #265f5d;
+}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,52 +11,68 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane prefHeight="672.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.ProductTabController">
+<AnchorPane prefHeight="672.0" prefWidth="915.0" stylesheets="@../css/menuStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.priyalalstorejavacw.ProductTabController">
    <children>
       <Label layoutX="25.0" layoutY="305.0" text="Edit/ Delete Product" />
       <Label layoutX="23.0" layoutY="14.0" text="Product List" />
       <Line endX="228.0" layoutX="123.0" layoutY="35.0" startX="-100.0" />
-      <Pane layoutX="23.0" layoutY="337.0" prefHeight="276.0" prefWidth="461.0" style="-fx-background-color: #ececed;">
+      <Pane layoutX="23.0" layoutY="337.0" prefHeight="283.0" prefWidth="461.0" style="-fx-background-color: #F8F8F8; -fx-background-radius: 10; -fx-border-color: rgba(0, 0, 0, 0.05); -fx-border-radius: 10;">
          <children>
             <Label layoutX="19.0" layoutY="18.0" text="Product Name or ID : " />
             <TextField fx:id="editProductSearchTxtBox" layoutX="144.0" layoutY="14.0" prefHeight="25.0" prefWidth="233.0" />
-            <Button layoutX="385.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchProduct" prefHeight="25.0" prefWidth="61.0" text="Search" />
-            <Pane layoutX="20.0" layoutY="52.0" prefHeight="93.0" prefWidth="426.0" style="-fx-background-color: gray;">
+            <Button layoutX="385.0" layoutY="14.0" mnemonicParsing="false" onAction="#searchProduct" prefHeight="25.0" prefWidth="61.0" styleClass="btn" text="Search">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Pane fx:id="editProductControlPane" disable="true" layoutX="19.0" layoutY="52.0" prefHeight="218.0" prefWidth="426.0" style="-fx-background-color: #F8F8F8; -fx-background-radius: 10; -fx-border-color: rgba(0, 0, 0, 0.05); -fx-border-radius: 10;">
                <children>
-                  <Button fx:id="productDeleteBtn" disable="true" layoutX="359.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="25.0" prefWidth="61.0" text="Delete" />
+                  <Button fx:id="productDeleteBtn" disable="true" layoutX="355.0" layoutY="61.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="25.0" prefWidth="61.0" styleClass="btn" text="Delete">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <Label layoutX="14.0" layoutY="31.0" text="Name :" />
-                  <Label layoutX="344.0" layoutY="12.0" text="ID : " />
+                  <Label layoutX="355.0" layoutY="32.0" text="ID : " />
                   <Label layoutX="14.0" layoutY="56.0" text="Category :" />
-                  <Label fx:id="productNotificationLabel" layoutX="15.0" layoutY="9.0" prefHeight="17.0" prefWidth="275.0" />
-                  <Label fx:id="showProductName" layoutX="86.0" layoutY="31.0" prefHeight="17.0" prefWidth="261.0" />
-                  <Label fx:id="showProductId" layoutX="366.0" layoutY="12.0" prefHeight="17.0" prefWidth="53.0" />
+                  <Label fx:id="showProductName" layoutX="86.0" layoutY="31.0" prefHeight="17.0" prefWidth="250.0" />
+                  <Label fx:id="showProductId" layoutX="377.0" layoutY="33.0" prefHeight="17.0" prefWidth="44.0" />
                   <Label fx:id="showProductCategory" layoutX="83.0" layoutY="59.0" prefHeight="17.0" prefWidth="261.0" />
+                  <Label layoutX="14.0" layoutY="112.0" text="Enter new Product Name :" />
+                  <TextField fx:id="editProductNewProductName" layoutX="158.0" layoutY="108.0" prefHeight="25.0" prefWidth="258.0" />
+                  <Button fx:id="productUpdateBtn" disable="true" layoutX="355.0" layoutY="183.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="25.0" prefWidth="61.0" styleClass="btn" text="Update">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label layoutX="15.0" layoutY="147.0" text="Select Category : " />
+                  <ComboBox fx:id="editProductComboBox" layoutX="158.0" layoutY="144.0" prefWidth="150.0" />
                </children>
             </Pane>
-            <Label layoutX="23.0" layoutY="163.0" text="Enter new Product Name :" />
-            <TextField fx:id="editProductNewProductName" layoutX="179.0" layoutY="160.0" prefHeight="25.0" prefWidth="267.0" />
-            <Button fx:id="productUpdateBtn" disable="true" layoutX="383.0" layoutY="236.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="25.0" prefWidth="61.0" text="Update" />
-            <Label layoutX="23.0" layoutY="198.0" text="Select Category : " />
-            <ComboBox fx:id="editProductComboBox" layoutX="179.0" layoutY="197.0" prefWidth="150.0" />
          </children>
       </Pane>
+      <Label fx:id="productNotificationLabel" layoutX="56.0" layoutY="399.0" prefHeight="17.0" prefWidth="275.0" />
       <Line endX="89.0" layoutX="125.0" layoutY="326.0" startX="-100.0" />
-      <Pane layoutX="508.0" layoutY="337.0" prefHeight="137.0" prefWidth="387.0" style="-fx-background-color: #ececed;">
+      <Pane layoutX="508.0" layoutY="337.0" prefHeight="137.0" prefWidth="387.0" style="-fx-background-color: #F8F8F8; -fx-background-radius: 10; -fx-border-color: rgba(0, 0, 0, 0.05); -fx-border-radius: 10;">
          <children>
             <Label layoutX="16.0" layoutY="20.0" text="Product Name : " />
             <TextField fx:id="addProductName" layoutX="119.0" layoutY="17.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter category name" />
-            <Button layoutX="269.0" layoutY="97.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="104.0" text="Add Product" />
+            <Button layoutX="269.0" layoutY="97.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="104.0" styleClass="btn" text="Add Product">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Label layoutX="17.0" layoutY="56.0" text="Select Category : " />
             <ComboBox fx:id="addProductComboBox" layoutX="119.0" layoutY="61.0" prefWidth="150.0" />
          </children>
       </Pane>
       <Label layoutX="509.0" layoutY="305.0" text="Add Product" />
       <Line endX="89.0" layoutX="610.0" layoutY="326.0" startX="-100.0" />
-      <Pane layoutX="509.0" layoutY="521.0" prefHeight="131.0" prefWidth="387.0" style="-fx-background-color: #ececed;">
+      <Pane layoutX="509.0" layoutY="521.0" prefHeight="131.0" prefWidth="387.0" style="-fx-background-color: #F8F8F8; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: rgba(0, 0, 0, 0.05);">
          <children>
             <Label layoutX="16.0" layoutY="20.0" text="Stock Count :" />
             <TextField fx:id="addStockCount" layoutX="119.0" layoutY="17.0" prefHeight="25.0" prefWidth="250.0" promptText="Enter stock count" />
-            <Button layoutX="269.0" layoutY="92.0" mnemonicParsing="false" onAction="#addStock" prefHeight="25.0" prefWidth="104.0" text="Add Stock" />
+            <Button layoutX="269.0" layoutY="92.0" mnemonicParsing="false" onAction="#addStock" prefHeight="25.0" prefWidth="104.0" styleClass="btn" text="Add Stock">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Label layoutX="17.0" layoutY="56.0" text="Select Product : " />
             <ComboBox fx:id="addStockComboBox" layoutX="119.0" layoutY="61.0" prefWidth="150.0" />
          </children>
