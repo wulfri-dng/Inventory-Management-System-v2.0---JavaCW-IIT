@@ -143,7 +143,7 @@ public class CategoryTabController {
             int currentCategoryId = (Integer) doc.get("id");
             String currentCategoryName = (String) doc.get("name");
             String currentCategoryNote = (String) doc.get("note");
-            if (editCategorySearchTxtBox.getText().equals("" + currentCategoryId) || editCategorySearchTxtBox.getText().equals(currentCategoryName)) {
+            if (editCategorySearchTxtBox.getText().equals("" + currentCategoryId) || editCategorySearchTxtBox.getText().toLowerCase().equals(currentCategoryName.toLowerCase())) {
                 isFound = true;
                 searchedCategoryID = currentCategoryId;
 
@@ -165,8 +165,6 @@ public class CategoryTabController {
             showCategoryNote.setText("");
             editCategoryNewCategoryNote.setText("");
             editCategoryNewCategoryName.setText("");
-            categoryDeleteBtn.setDisable(true);
-            categoryUpdateBtn.setDisable(true);
             editControlPane.setDisable(true);
         }
     }

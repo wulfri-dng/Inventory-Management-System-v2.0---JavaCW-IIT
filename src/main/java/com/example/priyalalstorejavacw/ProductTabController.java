@@ -260,7 +260,7 @@ public class ProductTabController {
             int currentProductId = (Integer) doc.get("id");
             String currentProductName = (String) doc.get("name");
             String currentProductCategory = (String) doc.get("categoryName");
-            if (editProductSearchTxtBox.getText().equals("" + currentProductId) || editProductSearchTxtBox.getText().equals(currentProductName)) {
+            if (editProductSearchTxtBox.getText().equals("" + currentProductId) || editProductSearchTxtBox.getText().toLowerCase().equals(currentProductName.toLowerCase())) {
                 isFound = true;
                 searchedProductID = currentProductId;
 
