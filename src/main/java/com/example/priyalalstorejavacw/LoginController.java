@@ -33,16 +33,17 @@ public class LoginController {
     PasswordField password;
 
     @FXML
+
     public void logInPressed(ActionEvent event) throws IOException {
-        String defaultUsername = null;
-        String defaultPassword = null;
+        String username = null;
+        String password = null;
         FindIterable<Document> iterDoc = passwordCollection.find();
-        for (Document doc: iterDoc) {
-            defaultUsername = (String) doc.get("username");
-            defaultPassword = (String) doc.get("password");
+        for (Document doc : iterDoc) {
+            username = (String) doc.get("username");
+            password = (String) doc.get("password");
         }
 
-        if (username.getText().equals(defaultUsername) && password.getText().equals(defaultPassword)) {
+        if (this.username.getText().equals(username) && this.password.getText().equals(password)) {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/menuWindow.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
@@ -51,12 +52,4 @@ public class LoginController {
             topLabel.setText("Invalid username or password");
         }
     }
-
-//    VBox vbox = new VBox(new Text("Invalid Username or Password"), new Button("Ok"));
-//            vbox.setAlignment(Pos.CENTER);
-//            vbox.setPadding(new Insets(30));
-////            vbox.setSpacing(new Insets(10));
-//
-//            dialogStage.setScene(new Scene(vbox));
-//            dialogStage.show();
 }

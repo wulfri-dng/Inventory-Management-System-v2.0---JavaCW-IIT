@@ -29,19 +29,13 @@
                </font>
             </Button>
             <Line endX="68.17156982421875" endY="-9.577022552490234" layoutX="113.0" layoutY="114.0" startX="-102.12132263183594" startY="-9.577160835266113" stroke="#ffffff78" />
-            <Button layoutX="10.0" layoutY="102.0" mnemonicParsing="false" onMouseClicked="#stock" prefHeight="46.0" prefWidth="177.0" styleClass="menuBtn" text="Stocks" textFill="WHITE">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Button>
-            <Line endX="68.17156982421875" endY="-9.577022552490234" layoutX="113.0" layoutY="206.0" startX="-102.12132263183594" startY="-9.577160835266113" stroke="#ffffff78" />
          </children>
       </VBox>
    </left>
    <center>
       <AnchorPane fx:id="menuAnchorPane" prefHeight="550.0" prefWidth="725.0" style="-fx-background-radius: 0 0 10 0; -fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="menuCloseBtn" layoutX="795.0" layoutY="39.0" mnemonicParsing="false" onAction="#closeMenu" text="Close" />
+            <Button layoutX="795.0" layoutY="39.0" mnemonicParsing="false" onAction="#logOut" text="Log Out" />
          </children></AnchorPane>
    </center>
 </BorderPane>

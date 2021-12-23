@@ -2,7 +2,9 @@ package com.example.priyalalstorejavacw;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,10 +28,6 @@ public class MenuController {
         loadPage("productTab");
     }
 
-    public void stock(MouseEvent mouseEvent) {
-        loadPage("sample");
-    }
-
     public void category(MouseEvent mouseEvent) {
         loadPage("categoryTab");
     }
@@ -37,6 +35,13 @@ public class MenuController {
     public void closeMenu(ActionEvent event) {
         Stage currentStage = (Stage) menuCloseBtn.getScene().getWindow();
         currentStage.close();
+    }
+
+    public void logOut(ActionEvent actionEvent) throws IOException {
+        Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fxml/loginWindow.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        currentStage.setScene(scene);
     }
 
     private void loadPage(String page){

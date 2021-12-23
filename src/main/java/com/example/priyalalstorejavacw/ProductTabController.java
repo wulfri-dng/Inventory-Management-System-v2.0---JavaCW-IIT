@@ -280,7 +280,6 @@ public class ProductTabController {
             showProductName.setText("");
             showProductCategory.setText("");
             editProductNewProductName.setText("");
-//            editProductChoiceBox.setText("");
             productUpdateBtn.setDisable(true);
             productDeleteBtn.setDisable(true);
             editProductControlPane.setDisable(true);
